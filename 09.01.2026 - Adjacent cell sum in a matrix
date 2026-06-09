@@ -1,0 +1,51 @@
+1. Adjacent cell sum in a matrix
+ To find the sum of the adjacent elements in a matrix for the index provided
+
+#C++
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int r, c;
+
+    cout << "Enter rows and columns: ";
+    cin >> r >> c;
+
+    int a[r][c];
+
+    cout << "Enter matrix elements:\n";
+    for(int i = 0; i < r; i++)
+    {
+        for(int j = 0; j < c; j++)
+        {
+            cin >> a[i][j];
+        }
+    }
+
+    int row, col;
+
+    cout << "Enter index (row col): ";
+    cin >> row >> col;
+
+    int sum = 0;
+
+    for(int i = row - 1; i <= row + 1; i++)
+    {
+        for(int j = col - 1; j <= col + 1; j++)
+        {
+            if(i >= 0 && i < r && j >= 0 && j < c)
+            {
+                if(!(i == row && j == col))
+                {
+                    sum += a[i][j];
+                }
+            }
+        }
+    }
+
+    cout << "Sum of adjacent elements = " << sum;
+
+    return 0;
+}
