@@ -1,0 +1,47 @@
+1. Longest Substring with equal 0's and 1's
+
+#C++
+
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+int main()
+{
+    string s;
+    cin >> s;
+
+    int zero = 0, one = 0;
+    int maxLen = 0, start = 0;
+
+    unordered_map<int,int> mp;
+    mp[0] = -1;
+
+    for(int i = 0; i < s.length(); i++)
+    {
+        if(s[i] == '0')
+            zero++;
+        else
+            one++;
+
+        int diff = one - zero;
+
+        if(mp.find(diff) != mp.end())
+        {
+            if(i - mp[diff] > maxLen)
+            {
+                maxLen = i - mp[diff];
+                start = mp[diff] + 1;
+            }
+        }
+        else
+        {
+            mp[diff] = i;
+        }
+    }
+
+    cout << "Length = " << maxLen << endl;
+    cout << "Substring = " << s.substr(start, maxLen);
+
+    return 0;
+}
